@@ -1,22 +1,27 @@
-import Total from "./Total";
-import Content from "./Content";
+import { useState } from "react";
 import Header from "./Header";
+import Statistics from "./Statistics";
 
 const App = () => {
-  const course = {name:"Half Stack application development",
-  parts:[
-    { name: "Fundamentals of React", exercises: 10 },
-    { name: "Using props to pass data", exercises: 7 },
-    { name: "State of a component", exercises: 14 },
-  ]}
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const total = good + neutral + bad;
 
   return (
     <div>
-      <Header course={course.name} />
+      <Header course="give Feedback" />
+      <button onClick={() => setGood(good + 1)}>good</button>
+      <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
+      <button onClick={() => setBad(bad + 1)}>bad</button>
+      <Header course="statistics" />
 
-      <Content parts={course.parts} />
-
-      <Total parts={course.parts} />
+      {total === 0 ? (
+        <p>No Feedback given</p>
+      ) : (
+        <Statistics good={good} neutral={neutral} bad={bad} total={total} />
+      )}
     </div>
   );
 };
