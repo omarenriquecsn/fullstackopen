@@ -1,11 +1,11 @@
-const Part = (props)=>{
-    return(
-        <div>
-        <p>
+const Part = (props) => {
+  return (
+    <div>
+      <p>
         {props.part} {props.exercises}
       </p>
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Part
+export default Part;
